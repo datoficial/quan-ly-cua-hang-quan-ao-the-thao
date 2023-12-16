@@ -20,6 +20,7 @@ class NhaCungCapController extends Controller
     public function postThem(Request $request)
     {
         $request->validate([
+<<<<<<< HEAD
             'tenncc' => ['required', 'max:255', 'unique:nhacungcap'],
             ]);
 
@@ -27,6 +28,13 @@ class NhaCungCapController extends Controller
         $orm->tenncc = $request->tenncc;
         $orm->tenncc_lug = Str::slug($request->tenncc, '-');
         $orm->diachi = $request->diachi;
+=======
+            'nhacungcap' => ['required', 'max:255', 'unique:nhacungcap'],
+            ]);
+
+        $orm = new NhaCungCap();
+        $orm->nhacungcap = $request->nhacungcap;
+>>>>>>> ff58304fbef0c91cd5a7ed87edbd896aa9be8180
         $orm->save();
         return redirect()->route('admin.nhacungcap');
     }
@@ -38,6 +46,7 @@ class NhaCungCapController extends Controller
     public function postSua(Request $request, $id)
     {
         $request->validate([
+<<<<<<< HEAD
             'tenncc' => ['required', 'max:255', 'unique:nhacungcap,tenncc,'. $id],
             ]);
 
@@ -45,6 +54,13 @@ class NhaCungCapController extends Controller
         $orm->tenncc = $request->tenncc;
         $orm->tenncc_lug = Str::slug($request->tenncc, '-');
         $orm->diachi = $request->diachi;
+=======
+            'nhacungcap' => ['required', 'max:255', 'unique:nhacungcap,nhacungcap,'. $id],
+            ]);
+
+        $orm = NhaCungCap::find($id);
+        $orm->nhacungcap = $request->nhacungcap;
+>>>>>>> ff58304fbef0c91cd5a7ed87edbd896aa9be8180
         $orm->save();
         return redirect()->route('admin.nhacungcap');
     }
